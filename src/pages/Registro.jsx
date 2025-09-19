@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 function Registro() {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("residente");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [error, setError] = useState("");
@@ -14,7 +16,7 @@ function Registro() {
     e.preventDefault();
     setError("");
     setSuccess("");
-    if (!username || !password || !repeatPassword) {
+    if (!username || !email || !password || !repeatPassword) {
       setError("Todos los campos son obligatorios");
       return;
     }
@@ -26,7 +28,7 @@ function Registro() {
       const response = await fetch("http://127.0.0.1:8000/api/register/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username, email, role, password }),
       });
       if (!response.ok) {
         let message = "Error al registrar";
@@ -56,6 +58,23 @@ function Registro() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        <label>Email</label>
+        <input
+          type="email"
+          placeholder="Ingresa tu email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label>Rol</label>
+        <select
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+        >
+          <option value="residente">Residente</option>
+          <option value="administrador">Administrador</option>
+          <option value="seguridad">Seguridad</option>
+          <option value="empleado">Empleado</option>
+        </select>
         <label>Contraseña</label>
         <input
           type="password"
