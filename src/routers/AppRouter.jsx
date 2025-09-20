@@ -7,7 +7,6 @@ import GestionUsuarios from "../pages/GestionUsuarios";
 import RolesYPermisos from "../pages/RolesYPermisos";
 import GestionResidentes from "../pages/GestionResidentes";
 import GestionUnidades from "../pages/GestionUnidades";
-import Registro from "../pages/Registro";
 import AutenticacionSeguridad from "../pages/AutenticacionSeguridad";
 import UsuariosUnidades from "../pages/UsuariosUnidades";
 
@@ -18,8 +17,6 @@ const AppRouter = () => {
   <Route path="/" element={<Login />} />
   <Route path="/login" element={<Login />} />
   <Route path="/dashboard" element={<Dashboard />} />
-  <Route path="/registro" element={<Registro />} />
-  <Route path="/register" element={<Registro />} />
   <Route path="/autenticacion" element={<AutenticacionSeguridad />} />
   <Route path="/usuarios_unidades" element={<UsuariosUnidades />} />
         <Route path="/usuarios/gestion" element={<GestionUsuarios />} />

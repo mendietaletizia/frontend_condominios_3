@@ -7,38 +7,46 @@ import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
+  const role = user?.role;
+  // Secciones filtradas según el rol
   const secciones = [
     {
       nombre: "Autenticación & Seguridad",
       key: "autenticacion_seguridad",
       icon: "🔒",
       onClick: () => navigate("/autenticacion"),
+      visible: true,
     },
     {
       nombre: "Mantenimiento",
       key: "mantenimiento",
       icon: "🛠️",
       onClick: () => alert("Módulo en desarrollo"),
+      visible: role === "administrador",
     },
     {
       nombre: "Finanzas & Pagos",
       key: "finanzas_pagos",
       icon: "💰",
       onClick: () => alert("Módulo en desarrollo"),
+      visible: role === "administrador" || role === "residente",
     },
     {
       nombre: "Usuarios & Unidades",
       key: "usuarios_unidades",
       icon: "👥",
       onClick: () => navigate("/usuarios_unidades"),
+      visible: true,
     },
     {
       nombre: "Comunicación",
       key: "comunicacion",
       icon: "💬",
       onClick: () => alert("Módulo en desarrollo"),
+      visible: true,
     },
-  ];
+  ].filter(sec => sec.visible);
 
   // Simulación de datos para widgets
   const pagos = 85;
